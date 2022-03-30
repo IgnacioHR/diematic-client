@@ -16,22 +16,22 @@ setuptools.setup(
   packages = ['diematic-client'],
   license='LGPL',
   url = 'https://github.com/IgnacioHR/diematic-client',
-  download_url = 'TODO',
+  download_url = 'https://github.com/IgnacioHR/diematic-client/archive/refs/tags/v0.1-beta.tar.gz',
   keywords = ['python', 'home-automation', 'iot', 'restful', 'de-dietrich', 'diematic', 'home-assistant'],
   install_requires=[
-		'aiohttp'
-		'aiosignal'
-		'async-timeout'
-		'asynctest'
-		'attrs'
-		'charset-normalizer'
-		'deepmerge'
-		'frozenlist'
-		'idna'
-		'multidict'
-		'pkg-resources'
-		'typing-extensions'
-		'yarl'
+		'aiohttp',
+		'aiosignal',
+		'async-timeout',
+		'asynctest',
+		'attrs',
+		'charset-normalizer',
+		'deepmerge',
+		'frozenlist',
+		'idna',
+		'multidict',
+		'pkg-resources',
+		'typing-extensions',
+		'yarl',
   ],
   classifiers=[
     'Development Status :: 4 - Beta',
