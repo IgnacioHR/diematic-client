@@ -1,4 +1,4 @@
-# diematic-client
+# diematic_client
 
 A Python module to consume information from diematic-server.
 
@@ -13,7 +13,7 @@ This package has been created to isolate the functionality to access to the serv
 ## Installation
 
 ```
-pip install diematic-client
+pip install diematic_client
 ```
 
 If you are installing the home assistant components (At this time, they are WIP) they should install this package automatically
