@@ -7,7 +7,7 @@ with open('README.md', 'r', encoding='utf-8') as long_description_f:
 
 setuptools.setup(
   name = 'diematic_client',
-  version = '1.1',
+  version = '1.2',
   description = 'Asynchronous Python client for diematic-server HTTP server',
 	long_description = long_description,
 	long_description_content_type = 'text/markdown; charset=UTF-8',
@@ -16,7 +16,7 @@ setuptools.setup(
   packages = ['diematic_client'],
   license='LGPL',
   url = 'https://github.com/IgnacioHR/diematic_client',
-  download_url = 'https://github.com/IgnacioHR/diematic_client/archive/refs/tags/v0.1-beta.tar.gz',
+  download_url = 'https://github.com/IgnacioHR/diematic_client/archive/refs/tags/v1.2-beta.tar.gz',
   keywords = ['python', 'home-automation', 'iot', 'restful', 'de-dietrich', 'diematic', 'home-assistant'],
   install_requires=[
 		'aiohttp',
