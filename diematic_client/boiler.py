@@ -113,7 +113,7 @@ class DiematicBoilerClient:
             data = encode_dict(data)
 
         try:
-            with async_timeout.timeout(self.request_timeout):
+            async with async_timeout.timeout(self.request_timeout):
                 response = await self._session.request(
                     method,
                     url,

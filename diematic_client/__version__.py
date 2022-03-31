@@ -1,3 +1,3 @@
 """Asyncronous Python client for Diematic."""
 
-__version__ = "0.0.2-beta"
+__version__ = "1.3-beta"
