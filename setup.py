@@ -7,7 +7,7 @@ with open('README.md', 'r', encoding='utf-8') as long_description_f:
 
 setuptools.setup(
   name = 'diematic-client',
-  version = '1.0',
+  version = '1.1',
   description = 'Asynchronous Python client for diematic-server HTTP server',
 	long_description = long_description,
 	long_description_content_type = 'text/markdown; charset=UTF-8',
@@ -29,7 +29,6 @@ setuptools.setup(
 		'frozenlist',
 		'idna',
 		'multidict',
-		'pkg-resources',
 		'typing-extensions',
 		'yarl',
   ],
