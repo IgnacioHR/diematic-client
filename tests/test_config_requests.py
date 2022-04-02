@@ -6,11 +6,11 @@ def test_get_config():
 
 def test_get_config_content_type():
 	response = requests.get("http://polo.chiton:8080/diematic/config")
-	assert response.headers['Content-Type'] == 'application/json'
+	assert response.headers['Content-Type'] == 'application/json; charset=utf-8'
 
 def test_get_config_content_length():
 	response = requests.get("http://polo.chiton:8080/diematic/config")
-	assert  int(response.headers['Content-Length']) > 0
+	assert  int(response.headers['content-length']) > 0
 
 def test_get_config_content():
 	response = requests.get("http://polo.chiton:8080/diematic/config")

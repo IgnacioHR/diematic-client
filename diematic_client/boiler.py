@@ -3,6 +3,7 @@ import aiohttp
 import async_timeout
 import asyncio
 from socket import gaierror as SocketGIAError
+import logging
 
 from .enums import (
     DiematicOperation,
@@ -19,6 +20,10 @@ from .exceptions import (
     DiematicParseError,
     DiematicResponseError,
 )
+import json
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class DiematicBoilerClient:
     """Main class for handling connections with Diematic HTTP servers."""
@@ -97,6 +102,9 @@ class DiematicBoilerClient:
         headers = {
             "User-Agent": self.user_agent,
             "Accept": "application/json, text/plain, */*",
+            "Connection": "keep-alive",
+            "Keep-Alive": "timeout=5, max=100",
+            "Cache-Control": "max-age=0",
         }
 
         if self._session is None:
@@ -114,19 +122,29 @@ class DiematicBoilerClient:
                     headers=headers,
                     ssl=self.verify_ssl,
                 )
-                if (response.status // 100) in [4, 5]:
-                    content = response.read()
+                try:
+                    if (response.status // 100) in [4, 5]:
+                        content = response.read()
+
+                        raise DiematicResponseError(
+                            f"HTTP {response.status}",
+                            {
+                                "content-type": response.headers.get("Content-type"),
+                                "message": content.decode("utf-8"),
+                                "status-code": response.status,
+                            },
+                        )
+
+                    if "content-length" in response.headers.keys():
+                        length = response.headers["content-length"]
+                        content = await response.content.readexactly(int(length))
+                        return json.loads(content)
+
+                    return await response.json()
+
+                finally:
                     response.close()
 
-                    raise DiematicResponseError(
-                        f"HTTP {response.status}",
-                        {
-                            "content-type": response.headers.get("Content-type"),
-                            "message": content.decode("utf-8"),
-                            "status-code": response.status,
-                        },
-                    )
-                return await response.json()
         except asyncio.TimeoutError as exc:
             raise DiematicConnectionError(
                 "Timeout occurred while connecting to Diematic server."
@@ -135,6 +153,10 @@ class DiematicBoilerClient:
             raise DiematicConnectionError(
                 "Error occurred while communicating with Diematic server."
             ) from exc
+        finally:
+            if self._close_session:
+                await self._session.close()
+                self._session = None
 
     async def execute(self, operation: DiematicOperation, message: dict) -> dict:
         """Send a request message to the server."""
