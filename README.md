@@ -1,12 +1,12 @@
 # diematic_client
 
-A Python module to consume information from diematic-server.
+A Python module to consume information from diematic_server.
 
 ## Software requirements
 
- * A running instance of diematic-server. In my case I've it running in a Raspberry PI 3 connected to the DeDietrich boiler using the RS-485 port. See the documentation for the diematic-server repository
+ * A running instance of diematic_server. In my case I've it running in a Raspberry PI 3 connected to the DeDietrich boiler using the RS-485 port. See the documentation for the diematic_server repository
 
-The documentation for the diematic-server project is in a separate repository and it is also a pipy package available to download and use.
+The documentation for the diematic_server project is in a separate repository and it is also a pipy package available to download and use.
 
 This package has been created to isolate the functionality to access to the server and allow for the integration of components inside home assistant.
 
